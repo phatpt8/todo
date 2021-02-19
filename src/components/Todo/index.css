@@ -1,0 +1,21 @@
+.container {
+  border: 1px solid red;
+  border-radius: 5px;
+  width: 50vw;
+  margin: 0 auto;
+  padding: 10px;
+
+  text-align: center;
+}
+
+.todo-list {
+  margin-top: 20px;
+}
+
+.todo-item {
+  transition: background 1s;
+}
+
+.todo-item.flashing {
+  background: red;
+}
