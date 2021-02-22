@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
+import Checkbox from "../Checkbox";
 
 import "./index.css";
 
 interface Item {
-  value: string | undefined;
+  value: string;
   done: boolean;
 }
 
@@ -21,7 +23,7 @@ const Todo = () => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && value !== "") {
             if (!cacheValues.has(value)) {
               cacheValues.add(value);
               const newItems = [{ value, done: false }, ...items];
@@ -43,8 +45,9 @@ const Todo = () => {
             className={`todo-item ${flashing === item.value ? "flashing" : ""}`}
             key={item.value}
           >
-            <input
-              type="checkbox"
+            <Checkbox
+              name={item.value}
+              label={item.value}
               defaultChecked={item.done}
               onChange={(e) => {
                 const newItems = items.map((newItem) => {
@@ -61,7 +64,6 @@ const Todo = () => {
                 setItems(newItems);
               }}
             />
-            <span>{item.value}</span>
             {item.done && (
               <button
                 type="button"
